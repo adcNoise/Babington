@@ -1,7 +1,7 @@
 #include "inttypes.h"
 
-#define MAXINTEGRALOIL  20000
-#define MININTEGRALOIL  -10000
+#define MAXINTEGRALOIL  200000
+#define MININTEGRALOIL  -1000
 
 uint8_t BurningFlag = 0;
 uint8_t PumpingFlag = 0;
@@ -10,7 +10,7 @@ static float CurrentAirTemperature = 0;
 static float TargetOilTemperature = 65;
 
 static float P_GAIN = 1;
-static float I_GAIN = 0.001;
+static float I_GAIN = 0.003;
 long integralSum;
 float summary;    
 
@@ -27,5 +27,8 @@ inline void PID_OIL_HEATER(){
       integralSum=MININTEGRALOIL;
     
     summary =   P_GAIN * ErrorOilTemperature;
-    summary +=  I_GAIN * integralSum;//*/    
+    summary +=  I_GAIN * integralSum;//*/
+
+    if(summary<0)
+      summary = 0;
  }

@@ -1,6 +1,6 @@
 #include "PID.h"
 
-byte customCharFlash[] = { // ������
+byte customCharFlash[] = {
   B00011,
   B00110,
   B01100,
@@ -63,17 +63,11 @@ inline void lcdInit(void){
 
  inline void mainFrame(){
    lcd.setCursor(0, 0);
-    lcd.print("M:"); lcd.print(CurrentOilTemperature);lcd.print("  ");
-
-    if(BurningFlag){
-      lcd.write((uint8_t)0);
-      BurningFlag = false;}
-     else{
-      lcd.print(" ");
-      BurningFlag = true;}
-
+    lcd.print("M:"); lcd.print(CurrentOilTemperature);lcd.print(" %");
+        
+    lcd.print((uint8_t)summary);lcd.print(" ");
     lcd.setCursor(0, 1);
-    lcd.print("B:"); lcd.print(CurrentAirTemperature);lcd.print("  ");
+    lcd.print("B:"); lcd.print(CurrentAirTemperature);lcd.print(" ");
 
     if(PumpingFlag){
       lcd.write((uint8_t)2);
@@ -81,8 +75,17 @@ inline void lcdInit(void){
      else{
       lcd.write((uint8_t)3);
       PumpingFlag = true;}
+    
+    lcd.print(" ");
+    
+    if(BurningFlag){
+      lcd.write((uint8_t)0);
+      BurningFlag = false;}
+     else{
+      lcd.print(" ");
+      BurningFlag = true;}
  }
 
  inline void menuFrame(){
-    
+  
   }

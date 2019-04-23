@@ -3,7 +3,6 @@
 #include "Heater.h"
 #include "lcd.h"
 
-
 void setup() {
   lcdInit();
   delay(1000);  
@@ -34,7 +33,6 @@ void loop() {
     case FRAME_MENU:
       menuFrame();  // отображение окна меню
       break;}
-    lcd.print(summary);lcd.print("  ");
  }
  ////////////////////////////////////////////////////////////////////////////////
   if (millis() - timingC > 500){ // 0.5s пауза

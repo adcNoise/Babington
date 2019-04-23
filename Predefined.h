@@ -1,4 +1,4 @@
-﻿#ifndef PREDEFINED_H_
+#ifndef PREDEFINED_H_
 #define PREDEFINED_H_
 
 #define BURNING_ON  true
