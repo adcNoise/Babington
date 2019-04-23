@@ -5,14 +5,13 @@
 
 void setup() {
   lcdInit();
-  delay(1000);  
-  init();  
-  lcd.clear();
+  init();
 }
 
 unsigned long timingA;
 unsigned long timingB;
 unsigned long timingC;
+int8_t  temp = 0;
 
 void loop() {
   ////////////////////////////////////////////////////////////////////////////////
@@ -21,6 +20,8 @@ void loop() {
     sensors.requestTemperatures();
     CurrentOilTemperature = sensors.getTempCByIndex(0);
     CurrentAirTemperature = sensors.getTempCByIndex(1);
+    
+    CurrentOilTemperature+=temp;
  }
  ////////////////////////////////////////////////////////////////////////////////
   if (millis() - timingB > 200){ // 0.2s пауза
@@ -38,5 +39,12 @@ void loop() {
   if (millis() - timingC > 500){ // 0.5s пауза
     timingC = millis();
     PID_OIL_HEATER();
+        
+    if(!(CHECKBIT(PINB,4)))
+      temp++;
+    
+    if(!(CHECKBIT(PINB,5)))
+      temp--;
+    
   }
 }
