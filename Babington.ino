@@ -11,7 +11,7 @@ void setup() {
 unsigned long timingA;
 unsigned long timingB;
 unsigned long timingC;
-int8_t  temp = 0;
+int8_t  temp = 0; /// debug variable!!!!!!!!!!!!!
 
 void loop() {
   ////////////////////////////////////////////////////////////////////////////////
@@ -39,12 +39,16 @@ void loop() {
   if (millis() - timingC > 500){ // 0.5s пауза
     timingC = millis();
     PID_OIL_HEATER();
+
+    if(CurrentOilTemperature>=(TargetOilTemperature-3))
+      sbit(PORTC,0);  // relay 1
+    else
+      cbit(PORTC,0); 
         
-    if(!(CHECKBIT(PINB,4)))
+    if(!(CHECKBIT(PINB,4))) /// debug variable!!!!!!!!!!!!!
       temp++;
     
-    if(!(CHECKBIT(PINB,5)))
-      temp--;
-    
+    if(!(CHECKBIT(PINB,5))) /// debug variable!!!!!!!!!!!!!
+      temp--;    
   }
 }

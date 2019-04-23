@@ -12,7 +12,7 @@ static float TargetOilTemperature = 65;
 static float P_GAIN = 1;
 static float I_GAIN = 0.005;
 static long integralSum;
-static float summary;    
+static float summary;
 
 inline void PID_OIL_HEATER(){
     static float ErrorOilTemperature;
