@@ -13,14 +13,17 @@ void setup() {
 
 unsigned long timingA;
 unsigned long timingB;
+unsigned long timingC;
 
 void loop() {
+  ////////////////////////////////////////////////////////////////////////////////
   if (millis() - timingA > 2000){ // 2s пауза Задача опроса температуры
     timingA = millis();
     sensors.requestTemperatures();
     CurrentOilTemperature = sensors.getTempCByIndex(0);
     CurrentAirTemperature = sensors.getTempCByIndex(1);
  }
+ ////////////////////////////////////////////////////////////////////////////////
   if (millis() - timingB > 200){ // 0.2s пауза
     timingB = millis();
 
@@ -31,9 +34,11 @@ void loop() {
     case FRAME_MENU:
       menuFrame();  // отображение окна меню
       break;}
+    lcd.print(summary);lcd.print("  ");
  }
-  if (millis() - timingB > 500){ // 0.5s пауза
-    timingB = millis();
-    
+ ////////////////////////////////////////////////////////////////////////////////
+  if (millis() - timingC > 500){ // 0.5s пауза
+    timingC = millis();
+    PID_OIL_HEATER();
   }
 }

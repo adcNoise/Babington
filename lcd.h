@@ -43,8 +43,8 @@ byte customCharPumpB[] = {
   B00000
 };
 enum {
-    FRAME_MENU,
-    FRAME_MAIN
+    FRAME_MAIN,
+    FRAME_MENU
   };
 
 uint8_t frameSelector = 0;
