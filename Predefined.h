@@ -8,7 +8,7 @@
 #define ROL(x) ((x << 1) | (x >> 7))
 #define ROR(x) ((x >> 1) | (x << 7))
 
-#define bauddivider(x) (XTAL/(16*x)-1)
+#define bauddivider(x) (XTAL/(16*x)-1) // рассчёт предделителя
 #define HI(x) ((x)>>8)
 #define LO(x) ((x)& 0xFF)
 

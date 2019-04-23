@@ -10,6 +10,7 @@ void setup() {
   init();  
   lcd.clear();
 }
+
 unsigned long timingA;
 unsigned long timingB;
 
