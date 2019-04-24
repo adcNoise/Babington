@@ -38,13 +38,10 @@ void loop() {
  ////////////////////////////////////////////////////////////////////////////////
   if (millis() - timingC > 500){ // 0.5s пауза
     timingC = millis();
-    PID_OIL_HEATER();
 
-    if(CurrentOilTemperature>=(TargetOilTemperature-3))
-      sbit(PORTC,0);  // relay 1
-    else
-      cbit(PORTC,0); 
-        
+    PID_OIL_HEATER();
+    CheckHeaterTemperature();
+ 
     if(!(CHECKBIT(PINB,4))) /// debug variable!!!!!!!!!!!!!
       temp++;
     
