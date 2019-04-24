@@ -75,7 +75,7 @@ inline void lcdInit(void){
   lcd.print("//github.com");
   lcd.setCursor(0, 1);
   lcd.print("/adcNoise/");
-  delay(5000);
+  delay(2000);
   lcd.clear();
   lcd.setCursor(4, 0);
   lcd.print("BABINGTON");
@@ -94,21 +94,19 @@ inline void lcdInit(void){
     lcd.setCursor(0, 1);
     lcd.print("B:"); lcd.print(CurrentAirTemperature);lcd.print(" ");
 
-    if(PumpingFlag){
-      lcd.write((uint8_t)2);
-      PumpingFlag = false;}
-     else{
-      lcd.write((uint8_t)3);
-      PumpingFlag = true;}
+//    if(PumpingFlag){
+//      lcd.write((uint8_t)2);
+//      PumpingFlag = false;}
+//     else{
+//      lcd.write((uint8_t)3);
+//      PumpingFlag = true;}
     
     lcd.print(" ");
     
-    if(BurningFlag){
+    if((vBurnerStatus==vBURNER_PHASE1_START)||(vBurnerStatus==vBURNER_PHASE3_START)||(vBurnerStatus==vBURNER_PHASE5_START)||(vBurnerStatus==vBURNER_PHASE7_START)||(vBurnerStatus==vBURNER_PHASE9_START)||(vBurnerStatus==vBURNER_PHASE11_START)){
       lcd.write((uint8_t)0);
-      BurningFlag = false;}
-     else{
-      lcd.print(" ");
-      BurningFlag = true;}
+    }else{
+      lcd.print(" ");}
  }
 
  inline void menuFrame(){

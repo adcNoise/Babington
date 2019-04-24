@@ -21,6 +21,7 @@ void loop() {
     CurrentOilTemperature = sensors.getTempCByIndex(0);
     CurrentAirTemperature = sensors.getTempCByIndex(1);
     
+    BurningFunctions();
     CurrentOilTemperature+=temp;
  }
  ////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +42,7 @@ void loop() {
 
     PID_OIL_HEATER();
     CheckHeaterTemperature();
- 
+    
     if(!(CHECKBIT(PINB,4))) /// debug variable!!!!!!!!!!!!!
       temp++;
     
