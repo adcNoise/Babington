@@ -37,7 +37,19 @@ uint8_t check() {
   return 1;
 }
 
+void Burner(){  
+    if((vBurnerStatus==vBURNER_PHASE1_START)||(vBurnerStatus==vBURNER_PHASE3_START)||(vBurnerStatus==vBURNER_PHASE5_START)||(vBurnerStatus==vBURNER_PHASE7_START)||(vBurnerStatus==vBURNER_PHASE9_START)||(vBurnerStatus==vBURNER_PHASE11_START)){
+      RELAY1_ON
+    }else{
+      RELAY1_OFF}
+  }
+
 inline void BurningFunctions() {
+
+  if((vBurnerStatus==vBURNER_PHASE1_START)||(vBurnerStatus==vBURNER_PHASE3_START)||(vBurnerStatus==vBURNER_PHASE5_START)||(vBurnerStatus==vBURNER_PHASE7_START)||(vBurnerStatus==vBURNER_PHASE9_START)||(vBurnerStatus==vBURNER_PHASE11_START))
+    sbit(PORTC, 1); // выход дискретной аварии
+   
+  
   switch (vBurnerStatus) {
     case  vBURNER_PHASE0_COLD:      // Горелка холодная, запуска поджиг нет смысла
     break;
@@ -76,8 +88,9 @@ inline void BurningFunctions() {
     break;
     case  vBURNER_PHASE12_STOPED:   // Поджиг неудачен или завершён
     break;
-    default: break;
-  }
+    default:
+    break;
+  }  
 }
 
 inline void init() {
@@ -85,8 +98,8 @@ inline void init() {
   sbit(DDRC, 1); // выход дискретной аварии
   cbit(PORTC, 1); // выход дискретной аварии
 
-  sbit(DDRC, 0); // relay 1
-  cbit(PORTC, 0); // relay 1
+  sbit(DDRC, 0); // relay 2
+  cbit(PORTC, 0); // relay 2
   // НАСТРОЙКА ЛИНИИ ONEWIRE
   sensors.begin();
 }

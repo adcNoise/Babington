@@ -32,10 +32,11 @@
 
 #define BAUDRATE 9600L 
 
-#define RELAY1_ON	  cbit(PORTC,1);
-#define RELAY1_OFF	sbit(PORTC,1);
+#define RELAY1_ON	  sbit(PORTC,1);
+#define RELAY1_OFF	cbit(PORTC,1);
+#define RELAY1_CH   chbit(PORTC,1);
 
-#define RELAY2_ON	  cbit(PORTC,0);
-#define RELAY2_OFF	sbit(PORTC,0);
+#define RELAY2_ON	  sbit(PORTC,0);
+#define RELAY2_OFF	cbit(PORTC,0);
 
 #endif /* PREDEFINED_H_ */

@@ -22,6 +22,17 @@ byte customCharQuad[] = {
   B11111
 };
 
+byte customCharGradus[] = {
+  B01100,
+  B10010,
+  B10010,
+  B01100,
+  B00000,
+  B00000,
+  B00000,
+  B00000
+};
+
 byte customCharPumpA[] = {
   B00000,
   B10000,
@@ -42,6 +53,17 @@ byte customCharPumpB[] = {
   B00000,
   B00000
 };
+
+byte customCharArrow[] = {
+  B00000,
+  B00100,
+  B00010,
+  B11111,
+  B00010,
+  B00100,
+  B00000,
+  B00000
+};
 enum {
     FRAME_MAIN,
     FRAME_MENU
@@ -58,6 +80,8 @@ inline void lcdInit(void){
   lcd.createChar(1, customCharQuad);
   lcd.createChar(2, customCharPumpA);
   lcd.createChar(3, customCharPumpB);
+  lcd.createChar(4, customCharGradus);
+  lcd.createChar(5, customCharArrow);
 
   /*while(*url){
 
@@ -88,11 +112,11 @@ inline void lcdInit(void){
 
  inline void mainFrame(){
    lcd.setCursor(0, 0);
-    lcd.print("M:"); lcd.print(CurrentOilTemperature);lcd.print(" %");
+    lcd.print("M:"); lcd.print((int8_t)CurrentOilTemperature);lcd.write((uint8_t)5);lcd.print((int8_t)TargetOilTemperature);lcd.write((uint8_t)4);lcd.print("C %");
         
     lcd.print((uint8_t)summary);lcd.print(" ");
     lcd.setCursor(0, 1);
-    lcd.print("B:"); lcd.print(CurrentAirTemperature);lcd.print(" ");
+    lcd.print("B:"); lcd.print((int8_t)CurrentAirTemperature);lcd.write((uint8_t)5);lcd.print((int8_t)TargetAirTemperature);lcd.write((uint8_t)4);lcd.print("C ");
 
 //    if(PumpingFlag){
 //      lcd.write((uint8_t)2);

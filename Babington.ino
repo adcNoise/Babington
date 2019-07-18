@@ -2,10 +2,17 @@
 #include "Predefined.h"
 #include "Heater.h"
 #include "lcd.h"
+#include "Init.h"
 
 void setup() {
   lcdInit();
   init();
+  
+  pinMode(9,OUTPUT);
+  pinMode(10,OUTPUT);
+  //analogWrite(9, 127);
+  //analogWrite(10, 127);
+  // while (1){};  // dbg
 }
 
 unsigned long timingA;
@@ -35,6 +42,9 @@ void loop() {
     case FRAME_MENU:
       menuFrame();  // отображение окна меню
       break;}
+    
+    Burner(); // поджиг в зависимости от статуса
+    
  }
  ////////////////////////////////////////////////////////////////////////////////
   if (millis() - timingC > 500){ // 0.5s пауза
@@ -42,6 +52,9 @@ void loop() {
 
     PID_OIL_HEATER();
     CheckHeaterTemperature();
+
+    analogWrite(9, (uint8_t)summary);
+    analogWrite(10, (uint8_t)summary);
     
     if(!(CHECKBIT(PINB,4))) /// debug variable!!!!!!!!!!!!!
       temp++;
